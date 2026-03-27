@@ -10,6 +10,8 @@ export function PersonalData() {
   const { currentRegistration, updateRegistration } = useRegistration();
   
   const [formData, setFormData] = useState({
+    carnet: (currentRegistration as any).carnet || '',
+    dpi: (currentRegistration as any).dpi || '',
     fullName: currentRegistration.fullName || '',
     address: currentRegistration.address || '',
     phone: currentRegistration.phone || '',
@@ -41,7 +43,7 @@ export function PersonalData() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.fullName || !formData.address || !formData.phone || 
+    if (!formData.carnet || !formData.dpi || !formData.fullName || !formData.address || !formData.phone ||
         !formData.emergencyContact || !formData.emergencyPhone) {
       toast.error('Por favor complete todos los campos');
       return;
@@ -107,6 +109,30 @@ export function PersonalData() {
                   </Form.Text>
                 </div>
               </div>
+            </Form.Group>
+
+            {/* Carnet */}
+            <Form.Group className="mb-3">
+              <Form.Label>Número de Carnet *</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="2021XXXXX"
+                value={formData.carnet}
+                onChange={(e) => setFormData({ ...formData, carnet: e.target.value })}
+                maxLength={15}
+              />
+            </Form.Group>
+
+            {/* DPI */}
+            <Form.Group className="mb-3">
+              <Form.Label>Número de DPI *</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="XXXX XXXXX XXXX"
+                value={formData.dpi}
+                onChange={(e) => setFormData({ ...formData, dpi: e.target.value })}
+                maxLength={20}
+              />
             </Form.Group>
 
             {/* Full Name */}

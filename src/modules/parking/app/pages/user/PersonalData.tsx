@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useRegistration } from '../../context/RegistrationContext';
 import { Card, Form, Button, Row, Col } from 'react-bootstrap';
-import { Upload, User } from 'lucide-react';
+import { Upload, User, ArrowLeft } from 'lucide-react';
 import { toast } from 'react-toastify';
 
 export function PersonalData() {
@@ -49,7 +49,7 @@ export function PersonalData() {
       return;
     }
 
-    if (!formData.photo) {
+    if (!formData.photo && !import.meta.env.DEV) {
       toast.error('Por favor suba una foto');
       return;
     }
@@ -120,6 +120,7 @@ export function PersonalData() {
                 value={formData.carnet}
                 onChange={(e) => setFormData({ ...formData, carnet: e.target.value })}
                 maxLength={15}
+                readOnly={import.meta.env.DEV}
               />
             </Form.Group>
 
@@ -132,6 +133,7 @@ export function PersonalData() {
                 value={formData.dpi}
                 onChange={(e) => setFormData({ ...formData, dpi: e.target.value })}
                 maxLength={20}
+                readOnly={import.meta.env.DEV}
               />
             </Form.Group>
 
@@ -143,6 +145,7 @@ export function PersonalData() {
                 placeholder="Juan Carlos Pérez García"
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                readOnly={import.meta.env.DEV}
               />
             </Form.Group>
 
@@ -154,6 +157,7 @@ export function PersonalData() {
                 placeholder="Zona 1, Guatemala, Guatemala"
                 value={formData.address}
                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                readOnly={import.meta.env.DEV}
               />
             </Form.Group>
 
@@ -165,6 +169,7 @@ export function PersonalData() {
                 placeholder="5555-5555"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                readOnly={import.meta.env.DEV}
               />
             </Form.Group>
 
@@ -176,6 +181,7 @@ export function PersonalData() {
                 placeholder="María Pérez"
                 value={formData.emergencyContact}
                 onChange={(e) => setFormData({ ...formData, emergencyContact: e.target.value })}
+                readOnly={import.meta.env.DEV}
               />
             </Form.Group>
 
@@ -187,17 +193,19 @@ export function PersonalData() {
                 placeholder="5555-5555"
                 value={formData.emergencyPhone}
                 onChange={(e) => setFormData({ ...formData, emergencyPhone: e.target.value })}
+                readOnly={import.meta.env.DEV}
               />
             </Form.Group>
 
             <Row className="g-3">
               <Col xs={6}>
                 <Button
-                  variant="outline-primary"
+                  variant="outline-secondary"
                   size="lg"
-                  className="w-100"
+                  className="w-100 d-flex align-items-center justify-content-center"
                   onClick={() => navigate('/parking/user')}
                 >
+                  <ArrowLeft size={16} className="me-2" />
                   Atrás
                 </Button>
               </Col>

@@ -49,10 +49,28 @@ interface RegistrationContextType {
 const RegistrationContext = createContext<RegistrationContextType | undefined>(undefined);
 
 export function RegistrationProvider({ children }: { children: React.ReactNode }) {
-  const [currentRegistration, setCurrentRegistration] = useState<Partial<Registration>>({
-    vehicles: [],
-    paymentStatus: 'pending',
-  });
+  const [currentRegistration, setCurrentRegistration] = useState<Partial<Registration>>(
+    import.meta.env.DEV
+      ? {
+          carnet: '7890-23-1234',
+          dpi: '2356789012345',
+          vehicleType: 'carro',
+          parkingPlan: 'sabado',
+          fullName: 'Juan Carlos Méndez López',
+          address: 'Zona 10, 12 calle 1-25, Guatemala City',
+          phone: '5555-1234',
+          emergencyContact: 'María López',
+          emergencyPhone: '5555-5678',
+          vehicles: [{ id: 'v1', color: 'Rojo', brand: 'Toyota', model: 'Corolla', plate: 'P-123-ABC' }],
+          amount: 80,
+          cardHolder: 'JUAN MENDEZ',
+          cardNumber: '4111 1111 1111 1111',
+          expiryDate: '12/26',
+          cvv: '123',
+          paymentStatus: 'pending',
+        }
+      : { vehicles: [], paymentStatus: 'pending' }
+  );
   
   const [registrations, setRegistrations] = useState<Registration[]>(() => {
     const saved = localStorage.getItem('parkingRegistrations');

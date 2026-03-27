@@ -67,66 +67,70 @@ export function VehicleData() {
           </Card.Subtitle>
         </Card.Header>
         <Card.Body className="p-4">
-          <Row className="g-3 mb-3">
-            <Col md={6}>
-              <Form.Group>
-                <Form.Label>Color</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Blanco"
-                  value={currentVehicle.color}
-                  onChange={(e) => setCurrentVehicle({ ...currentVehicle, color: e.target.value })}
-                />
-              </Form.Group>
-            </Col>
+          {!import.meta.env.DEV && (
+            <>
+              <Row className="g-3 mb-3">
+                <Col md={6}>
+                  <Form.Group>
+                    <Form.Label>Color</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Blanco"
+                      value={currentVehicle.color}
+                      onChange={(e) => setCurrentVehicle({ ...currentVehicle, color: e.target.value })}
+                    />
+                  </Form.Group>
+                </Col>
 
-            <Col md={6}>
-              <Form.Group>
-                <Form.Label>Marca</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Toyota"
-                  value={currentVehicle.brand}
-                  onChange={(e) => setCurrentVehicle({ ...currentVehicle, brand: e.target.value })}
-                />
-              </Form.Group>
-            </Col>
+                <Col md={6}>
+                  <Form.Group>
+                    <Form.Label>Marca</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Toyota"
+                      value={currentVehicle.brand}
+                      onChange={(e) => setCurrentVehicle({ ...currentVehicle, brand: e.target.value })}
+                    />
+                  </Form.Group>
+                </Col>
 
-            <Col md={6}>
-              <Form.Group>
-                <Form.Label>Modelo</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Corolla"
-                  value={currentVehicle.model}
-                  onChange={(e) => setCurrentVehicle({ ...currentVehicle, model: e.target.value })}
-                />
-              </Form.Group>
-            </Col>
+                <Col md={6}>
+                  <Form.Group>
+                    <Form.Label>Modelo</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Corolla"
+                      value={currentVehicle.model}
+                      onChange={(e) => setCurrentVehicle({ ...currentVehicle, model: e.target.value })}
+                    />
+                  </Form.Group>
+                </Col>
 
-            <Col md={6}>
-              <Form.Group>
-                <Form.Label>Número de Placa</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="P-123ABC"
-                  style={{ textTransform: 'uppercase' }}
-                  value={currentVehicle.plate}
-                  onChange={(e) => setCurrentVehicle({ ...currentVehicle, plate: e.target.value.toUpperCase() })}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
+                <Col md={6}>
+                  <Form.Group>
+                    <Form.Label>Número de Placa</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="P-123ABC"
+                      style={{ textTransform: 'uppercase' }}
+                      value={currentVehicle.plate}
+                      onChange={(e) => setCurrentVehicle({ ...currentVehicle, plate: e.target.value.toUpperCase() })}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
 
-          <Button
-            variant="outline-primary"
-            className="w-100"
-            onClick={handleAddVehicle}
-            disabled={vehicles.length >= 3}
-          >
-            <Plus size={16} className="me-2" />
-            Agregar Vehículo ({vehicles.length}/3)
-          </Button>
+              <Button
+                variant="outline-primary"
+                className="w-100"
+                onClick={handleAddVehicle}
+                disabled={vehicles.length >= 3}
+              >
+                <Plus size={16} className="me-2" />
+                Agregar Vehículo ({vehicles.length}/3)
+              </Button>
+            </>
+          )}
         </Card.Body>
       </Card>
 
@@ -165,14 +169,16 @@ export function VehicleData() {
                       </small>
                     </div>
                   </div>
-                  <Button
-                    variant="link"
-                    size="sm"
-                    className="text-danger"
-                    onClick={() => handleRemoveVehicle(vehicle.id)}
-                  >
-                    <Trash2 size={16} />
-                  </Button>
+                  {!import.meta.env.DEV && (
+                    <Button
+                      variant="link"
+                      size="sm"
+                      className="text-danger"
+                      onClick={() => handleRemoveVehicle(vehicle.id)}
+                    >
+                      <Trash2 size={16} />
+                    </Button>
+                  )}
                 </div>
               ))}
             </div>
@@ -187,7 +193,7 @@ export function VehicleData() {
             <Button
               variant="outline-secondary"
               size="lg"
-              className="w-100"
+              className="w-100 d-flex align-items-center justify-content-center"
               onClick={() => navigate('/parking/user/datos-personales')}
             >
               <ArrowLeft size={16} className="me-2" />

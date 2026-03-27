@@ -197,7 +197,7 @@ export function Signature() {
               <Button
                 variant="outline-secondary"
                 size="lg"
-                className="w-100"
+                className="w-100 d-flex align-items-center justify-content-center"
                 onClick={() => navigate('/parking/user/pago')}
               >
                 <ArrowLeft size={16} className="me-2" />

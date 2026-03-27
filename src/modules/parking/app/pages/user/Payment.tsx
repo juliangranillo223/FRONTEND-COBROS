@@ -130,6 +130,7 @@ export function Payment() {
                 style={{ textTransform: 'uppercase' }}
                 value={formData.cardHolder}
                 onChange={(e) => setFormData({ ...formData, cardHolder: e.target.value.toUpperCase() })}
+                readOnly={import.meta.env.DEV}
               />
             </Form.Group>
 
@@ -143,16 +144,17 @@ export function Payment() {
                   value={formData.cardNumber}
                   onChange={(e) => setFormData({ ...formData, cardNumber: formatCardNumber(e.target.value) })}
                   maxLength={19}
+                  readOnly={import.meta.env.DEV}
                 />
-                <CreditCard 
-                  size={20} 
-                  style={{ 
-                    position: 'absolute', 
-                    right: 12, 
-                    top: '50%', 
+                <CreditCard
+                  size={20}
+                  style={{
+                    position: 'absolute',
+                    right: 12,
+                    top: '50%',
                     transform: 'translateY(-50%)',
                     color: '#6c757d'
-                  }} 
+                  }}
                 />
               </div>
             </Form.Group>
@@ -168,6 +170,7 @@ export function Payment() {
                     value={formData.expiryDate}
                     onChange={(e) => setFormData({ ...formData, expiryDate: formatExpiryDate(e.target.value) })}
                     maxLength={5}
+                    readOnly={import.meta.env.DEV}
                   />
                 </Form.Group>
               </Col>
@@ -181,6 +184,7 @@ export function Payment() {
                     maxLength={3}
                     value={formData.cvv}
                     onChange={(e) => setFormData({ ...formData, cvv: e.target.value.replace(/\D/g, '') })}
+                    readOnly={import.meta.env.DEV}
                   />
                 </Form.Group>
               </Col>
@@ -197,7 +201,7 @@ export function Payment() {
                 <Button
                   variant="outline-secondary"
                   size="lg"
-                  className="w-100"
+                  className="w-100 d-flex align-items-center justify-content-center"
                   onClick={() => navigate('/parking/user/vehiculos')}
                 >
                   <ArrowLeft size={16} className="me-2" />

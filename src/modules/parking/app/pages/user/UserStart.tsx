@@ -6,11 +6,11 @@ import { Car, Bike, Calendar } from 'lucide-react';
 
 export function UserStart() {
   const navigate = useNavigate();
-  const { updateRegistration } = useRegistration();
-  
+  const { currentRegistration, updateRegistration } = useRegistration();
+
   const [formData, setFormData] = useState({
-    vehicleType: 'carro' as 'moto' | 'carro',
-    parkingPlan: 'entre-semana' as 'entre-semana' | 'sabado' | 'domingo',
+    vehicleType: (currentRegistration.vehicleType ?? 'carro') as 'moto' | 'carro',
+    parkingPlan: (currentRegistration.parkingPlan ?? 'entre-semana') as 'entre-semana' | 'sabado' | 'domingo',
   });
 
   const handleSubmit = (e: React.FormEvent) => {

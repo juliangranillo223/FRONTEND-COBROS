@@ -1,28 +1,23 @@
-// src/App.jsx
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router';
+import ParkingModuleLayout from './modules/parking/app/App';
+import { parkingRoutes } from './modules/parking/app/routes';
 import './App.css';
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Navigate to="/parking" replace />,
+  },
+  {
+    path: '/parking',
+    Component: ParkingModuleLayout,
+    children: parkingRoutes,
+  },
+]);
+
 function App() {
-  const [msg, setMsg] = useState('Cargando...');
-  const API = process.env.REACT_APP_API_URL || 'http://localhost:4000';
-
-  useEffect(() => {
-    fetch(`${API}/test`)
-      .then(res => res.json())
-      .then(data => {
-        // tu endpoint /test devuelve lo que definas en testget
-        setMsg(data.message || JSON.stringify(data));
-      })
-      .catch(err => setMsg('Error: ' + err.message));
-  }, [API]);
-
-  return (
-    <div style={{ padding: 20, fontFamily: 'Arial, sans-serif' }}>
-      <h1>UMG Parqueo - Frontend</h1>
-      <p>Mensaje desde backend: <strong>{msg}</strong></p>
-      <p>API: <code>{API}</code></p>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

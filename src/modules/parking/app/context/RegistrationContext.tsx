@@ -59,7 +59,7 @@ const RegistrationContext = createContext<RegistrationContextType | undefined>(u
 const simulatedUsers: Registration[] = [
   {
     id: 'simulated-1',
-    carnet: '5190-23-0001',
+    carnet: '5190-23-10007',
     dpi: '1234567890123',
     vehicleType: 'carro',
     parkingPlan: 'entre-semana',
@@ -183,7 +183,7 @@ export function RegistrationProvider({ children }: { children: React.ReactNode }
     // Datos simulados si no hay registros
     const simulatedRegistration: Registration = {
       id: 'simulated-1',
-      carnet: '5190-23-0001',
+      carnet: '5190-23-10007',
       dpi: '1234567890123',
       vehicleType: 'carro',
       parkingPlan: 'entre-semana',

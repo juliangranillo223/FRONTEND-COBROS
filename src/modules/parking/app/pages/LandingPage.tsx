@@ -12,13 +12,13 @@ export function LandingPage() {
 
   useEffect(() => {
     // Si no ha iniciado sesión, lo mandamos al Login primero
-    if (!currentRegistration.id && !currentRegistration.carnet) {
+    if (!currentRegistration || !currentRegistration.carnet) {
       navigate('/parking/login');
     }
   }, [currentRegistration, navigate]);
 
   // Si no hay datos, no renderizar nada mientras redirige
-  if (!currentRegistration.id && !currentRegistration.carnet) return null;
+  if (!currentRegistration || !currentRegistration.carnet) return null;
 
   return (
     <div style={{

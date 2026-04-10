@@ -11,9 +11,9 @@ export function AdminLayout() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
+    <div className="parking-shell parking-shell--solid">
       <AppHeader
-        subtitle="Panel de Administración"
+        subtitle="Panel de Administracion"
         actions={
           <>
             <div className="text-end d-none d-md-block text-white">
@@ -22,14 +22,13 @@ export function AdminLayout() {
             </div>
             <Button variant="light" size="sm" onClick={handleLogout}>
               <LogOut size={16} className="me-2" />
-              Cerrar Sesión
+              Cerrar Sesion
             </Button>
           </>
         }
       />
 
-      {/* Main Content */}
-      <Container fluid="lg" className="py-4">
+      <Container fluid="lg" className="parking-content-container py-4">
         <Outlet />
       </Container>
     </div>

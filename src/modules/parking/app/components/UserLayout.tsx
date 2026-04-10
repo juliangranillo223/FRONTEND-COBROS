@@ -1,12 +1,10 @@
-import { Outlet, useLocation, useNavigate } from 'react-router';
-import { Container, Button } from 'react-bootstrap';
-import { ArrowLeft } from 'lucide-react';
+import { Outlet, useLocation } from 'react-router';
+import { Container } from 'react-bootstrap';
 import { AppHeader } from './AppHeader';
 import villanueva from '../../../../assets/villanueva.webp';
 
 export function UserLayout() {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const steps = [
     { path: '/parking/user', label: 'Datos del vehiculo' },
@@ -17,25 +15,16 @@ export function UserLayout() {
   const currentStepIndex = steps.findIndex((step) => step.path === location.pathname);
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${villanueva})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed',
-    }}>
-      <AppHeader
-        subtitle="Registro de Parqueo"
-        actions={
-          <Button variant="ghost" size="sm" onClick={() => navigate('/parking')} style={{ padding: '6px 8px', color: 'white' }}>
-            <ArrowLeft size={20} />
-          </Button>
-        }
-      />
+    <div
+      className="parking-shell parking-shell--photo"
+      style={{
+        backgroundImage: `url(${villanueva})`,
+      }}
+    >
+      <AppHeader subtitle="Registro de Parqueo" />
 
-      {/* Progress Steps */}
       {currentStepIndex !== -1 && location.pathname !== '/parking/user/confirmacion' && (
-        <div style={{ backgroundColor: 'white', borderBottom: '1px solid #dee2e6' }}>
+        <div className="parking-progress-shell">
           <Container className="py-4">
             <div className="d-flex align-items-center justify-content-between">
               {steps.map((step, index) => (
@@ -52,8 +41,9 @@ export function UserLayout() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         fontSize: 14,
-                        fontWeight: 500,
-                        transition: 'all 0.3s'
+                        fontWeight: 700,
+                        transition: 'all 0.3s',
+                        boxShadow: index <= currentStepIndex ? '0 10px 20px rgba(196, 18, 48, 0.24)' : 'none',
                       }}
                     >
                       {index + 1}
@@ -63,7 +53,7 @@ export function UserLayout() {
                       style={{
                         fontSize: 12,
                         color: index <= currentStepIndex ? '#C41230' : '#6c757d',
-                        fontWeight: index <= currentStepIndex ? 500 : 400
+                        fontWeight: index <= currentStepIndex ? 700 : 500,
                       }}
                     >
                       {step.label}
@@ -78,7 +68,7 @@ export function UserLayout() {
                         marginBottom: 30,
                         marginLeft: 8,
                         marginRight: 8,
-                        transition: 'all 0.3s'
+                        transition: 'all 0.3s',
                       }}
                     />
                   )}
@@ -89,8 +79,7 @@ export function UserLayout() {
         </div>
       )}
 
-      {/* Main Content */}
-      <Container className="py-4">
+      <Container className="parking-content-container py-4">
         <Outlet />
       </Container>
     </div>

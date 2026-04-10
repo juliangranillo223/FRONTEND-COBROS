@@ -13,11 +13,11 @@ export function Payment() {
   const getAmount = () => {
     switch (currentRegistration.parkingPlan) {
       case 'entre-semana':
-        return 200;
+        return 600;
       case 'sabado':
-        return 80;
+        return 600;
       case 'domingo':
-        return 50;
+        return 600;
       default:
         return 0;
     }
@@ -145,8 +145,8 @@ export function Payment() {
                 <Button
                   variant="outline-primary"
                   size="lg"
-                  className="w-100"
-                  onClick={() => navigate('/parking/user/vehiculos')}
+                className="w-100 d-flex align-items-center justify-content-center"
+                onClick={() => navigate('/parking/user')}
                 >
                   <ArrowLeft size={16} className="me-2" />
                   Atrás
@@ -280,8 +280,8 @@ export function Payment() {
                 <Button
                   variant="outline-secondary"
                   size="lg"
-                  className="w-100"
-                  onClick={() => navigate('/parking/user/vehiculos')}
+                className="w-100 d-flex align-items-center justify-content-center"
+                  onClick={() => navigate('/parking/user')}
                 >
                   <ArrowLeft size={16} className="me-2" />
                   Atrás

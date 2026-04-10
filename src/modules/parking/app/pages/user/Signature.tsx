@@ -98,7 +98,7 @@ export function Signature() {
 
     const signatureData = canvas.toDataURL();
     updateRegistration({ signature: signatureData });
-    navigate('/parking/user/verificacion');
+    navigate('/parking/user/confirmacion');
   };
 
   // Si ya hay firma, mostrar verificación
@@ -130,7 +130,7 @@ export function Signature() {
                 <ArrowLeft size={16} className="mr-2" />
                 Atrás
               </Button>
-              <Button size="lg" onClick={() => navigate('/parking/user/verificacion')}>
+              <Button size="lg" onClick={() => navigate('/parking/user/confirmacion')}>
                 Siguiente
               </Button>
             </div>

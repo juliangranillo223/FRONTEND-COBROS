@@ -5,6 +5,7 @@ import { Card, Form, Button, Alert, Container, Spinner } from 'react-bootstrap';
 import { LogIn } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { AppHeader } from '../../components/AppHeader';
+import { AppFooter } from '../../components/AppFooter';
 import { getReadableApiError } from '../../../../../shared/api';
 import { delinquentStudentService, studentService } from '../../../../../shared/services';
 
@@ -53,16 +54,20 @@ export function LoginUser() {
   };
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      backgroundImage: 'linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(/villanueva.webp)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed',
-    }}>
+    <div
+      className="parking-shell parking-shell--photo"
+      style={{
+        minHeight: '100vh',
+        backgroundImage: 'url(/villanueva.webp)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <AppHeader />
 
-      <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: 'calc(100vh - 100px)' }}>
+      <main>
+      <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: 'calc(100vh - 170px)' }}>
         <div style={{ width: '100%', maxWidth: 450 }}>
           <Card className="shadow-lg border-0 rounded-3">
             <Card.Body className="p-4 p-md-5">
@@ -109,6 +114,8 @@ export function LoginUser() {
           </Card>
         </div>
       </Container>
+      </main>
+      <AppFooter />
     </div>
   );
 }

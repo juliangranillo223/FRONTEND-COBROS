@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from 'react-router';
 import { Container, Button } from 'react-bootstrap';
 import { LogOut } from 'lucide-react';
 import { AppHeader } from './AppHeader';
+import { AppFooter } from './AppFooter';
 
 export function AdminLayout() {
   const navigate = useNavigate();
@@ -28,9 +29,13 @@ export function AdminLayout() {
         }
       />
 
-      <Container fluid="lg" className="parking-content-container py-4">
-        <Outlet />
-      </Container>
+      <main>
+        <Container fluid="lg" className="parking-content-container py-4">
+          <Outlet />
+        </Container>
+      </main>
+
+      <AppFooter />
     </div>
   );
 }

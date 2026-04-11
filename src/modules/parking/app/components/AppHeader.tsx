@@ -20,7 +20,7 @@ export function AppHeader({ subtitle = 'Sistema de Parqueo', actions }: AppHeade
               <h5 className="parking-app-header__title mb-0 fw-bold text-white">
                 Universidad Mariano Galvez De Guatemala
               </h5>
-              <small style={{ color: 'rgba(255, 255, 255, 0.8)' }}>{subtitle}</small>
+              <small style={{ color: '#ffffff' }}>{subtitle}</small>
             </div>
           </div>
           {actions && <div className="d-flex align-items-center gap-3">{actions}</div>}

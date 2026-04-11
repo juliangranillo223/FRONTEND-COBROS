@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router';
 import { Alert, Button, Card, Col, Row, Spinner, Table } from 'react-bootstrap';
 import { ArrowLeft, BadgeCheck, CreditCard, FileText, ShieldAlert } from 'lucide-react';
 import { useRegistration } from '../../context/RegistrationContext';
-import { AppHeader } from '../../components/AppHeader';
 import { getReadableApiError } from '../../../../../shared/api';
 import type {
   BackendEstudiante,
@@ -143,18 +142,16 @@ function UserProfile() {
         backgroundImage: 'url(/assets/villanueva.webp)',
       }}
     >
-      <AppHeader subtitle="Estado de Cuenta" />
-
       <div className="container py-4">
         <div className="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
           <div>
-            <p className="text-uppercase text-white-50 fw-semibold mb-2" style={{ letterSpacing: '0.12em', fontSize: 12 }}>
+            <p className="parking-finance-heading text-uppercase fw-semibold mb-2" style={{ letterSpacing: '0.12em', fontSize: 12 }}>
               Modulo Financiero
             </p>
-            <h1 className="text-white mb-1" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800 }}>
+            <h1 className="parking-finance-heading mb-1" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800 }}>
               Estado de Cuenta
             </h1>
-            <p className="mb-0" style={{ color: 'rgba(255,255,255,0.82)' }}>
+            <p className="parking-finance-subheading mb-0">
               Resumen consolidado de pagos, multas y estado administrativo.
             </p>
           </div>
@@ -172,65 +169,52 @@ function UserProfile() {
           </div>
         )}
 
-        <Card className="shadow-sm mb-4" style={{ overflow: 'hidden' }}>
-          <Card.Body className="p-0">
-            <div
-              className="p-4 p-lg-5 text-white"
-              style={{
-                background: 'linear-gradient(135deg, rgba(9,36,68,0.96) 0%, rgba(196,18,48,0.9) 100%)',
-              }}
-            >
+        <Card className="parking-student-panel shadow-sm mb-4">
+          <Card.Body className="parking-student-panel__body p-4 p-lg-5">
               <Row className="g-4 align-items-end">
                 <Col lg={7}>
                   <div className="d-flex align-items-center gap-3 mb-4">
                     <div
-                      className="d-flex align-items-center justify-content-center"
-                      style={{
-                        width: 62,
-                        height: 62,
-                        borderRadius: 18,
-                        background: 'rgba(255,255,255,0.14)',
-                        border: '1px solid rgba(255,255,255,0.14)',
-                      }}
+                      className="parking-student-panel__icon d-flex align-items-center justify-content-center"
                     >
                       <FileText size={28} />
                     </div>
                     <div>
-                      <div className="small text-white-50">Titular de la cuenta</div>
-                      <div className="fs-3 fw-bold">{student?.EST_NOMBRE_COMPLETO || currentRegistration.fullName || 'No disponible'}</div>
+                      <div className="parking-student-panel__eyebrow small">Titular de la cuenta</div>
+                      <div className="parking-student-panel__text fs-3 fw-bold">
+                        {student?.EST_NOMBRE_COMPLETO || currentRegistration.fullName || 'No disponible'}
+                      </div>
                     </div>
                   </div>
 
                   <Row className="g-3">
                     <Col md={4}>
-                      <div className="small text-white-50">Carnet</div>
-                      <div className="fw-semibold">{student?.EST_CARNE || currentRegistration.carnet}</div>
+                      <div className="parking-student-panel__muted small">Carnet</div>
+                      <div className="parking-student-panel__text fw-semibold">{student?.EST_CARNE || currentRegistration.carnet}</div>
                     </Col>
                     <Col md={5}>
-                      <div className="small text-white-50">Correo institucional</div>
-                      <div className="fw-semibold">{student?.EST_EMAIL || currentRegistration.institutionalEmail || 'No disponible'}</div>
+                      <div className="parking-student-panel__muted small">Correo institucional</div>
+                      <div className="parking-student-panel__text fw-semibold">
+                        {student?.EST_EMAIL || currentRegistration.institutionalEmail || 'No disponible'}
+                      </div>
                     </Col>
                     <Col md={3}>
-                      <div className="small text-white-50">Estado</div>
-                      <div className="fw-semibold">{activeDelinquency ? 'Con restriccion' : 'Al dia'}</div>
+                      <div className="parking-student-panel__muted small">Estado</div>
+                      <div className="parking-student-panel__text fw-semibold">{activeDelinquency ? 'Con restriccion' : 'Al dia'}</div>
                     </Col>
                   </Row>
                 </Col>
 
                 <Col lg={5}>
-                  <div
-                    className="p-4 rounded-4"
-                    style={{ background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.12)' }}
-                  >
-                    <div className="small text-white-50 mb-2">Balance registrado</div>
-                    <div className="display-5 fw-bold mb-2">{formatCurrency(totalPaid)}</div>
-                    <div className="small text-white-50">
+                  <div className="parking-student-panel__balance p-4 rounded-4">
+                    <div className="parking-student-panel__muted small mb-2">Balance registrado</div>
+                    <div className="parking-student-panel__text display-5 fw-bold mb-2">{formatCurrency(totalPaid)}</div>
+                    <div className="parking-student-panel__muted small">
                       Ultimo movimiento: {latestPayment ? formatDate(latestPayment.PAG_FECHA_PAGO) : 'Sin pagos registrados'}
                     </div>
                   </div>
                 </Col>
               </Row>
-            </div>
           </Card.Body>
         </Card>
 

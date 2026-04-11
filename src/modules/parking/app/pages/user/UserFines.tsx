@@ -33,6 +33,24 @@ function getFineStatusVariant(status?: string) {
   }
 }
 
+function formatFineDate(value?: string) {
+  if (!value) {
+    return 'No disponible';
+  }
+
+  const parsed = new Date(value);
+
+  if (Number.isNaN(parsed.getTime())) {
+    return value;
+  }
+
+  const year = parsed.getFullYear();
+  const month = `${parsed.getMonth() + 1}`.padStart(2, '0');
+  const day = `${parsed.getDate()}`.padStart(2, '0');
+
+  return `${year}/${month}/${day}`;
+}
+
 export function UserFines() {
   const navigate = useNavigate();
   const { currentRegistration } = useRegistration();
@@ -107,10 +125,10 @@ export function UserFines() {
         </Card.Header>
         <Card.Body className="p-4">
           <div className="d-flex flex-wrap gap-3 mb-4">
-            <Card className="border-0" style={{ backgroundColor: '#fff5f5', minWidth: 220 }}>
+            <Card className="border-0" style={{ backgroundColor: '#FFFFFF', minWidth: 220 }}>
               <Card.Body>
                 <div className="d-flex align-items-center gap-3">
-                  <AlertTriangle color="#C41230" />
+                  <AlertTriangle color="#C7352E" />
                   <div>
                     <div className="small text-muted">Multas activas</div>
                     <div className="h4 mb-0">{activeFinesCount}</div>
@@ -119,10 +137,10 @@ export function UserFines() {
               </Card.Body>
             </Card>
 
-            <Card className="border-0" style={{ backgroundColor: '#f8f9fa', minWidth: 220 }}>
+            <Card className="border-0" style={{ backgroundColor: '#FFFFFF', minWidth: 220 }}>
               <Card.Body>
                 <div className="d-flex align-items-center gap-3">
-                  <Receipt color="#0d47a1" />
+                  <Receipt color="#1A6AA6" />
                   <div>
                     <div className="small text-muted">Registros encontrados</div>
                     <div className="h4 mb-0">{fines.length}</div>
@@ -155,12 +173,10 @@ export function UserFines() {
                 estudiante-multa, por eso el pago se apoya en esa informacion y el monto se completa en el formulario.
               </Alert>
 
-              <div className="table-responsive">
-                <Table hover>
-                  <thead className="table-light">
+              <div className="table-responsive parking-fines-table">
+                <Table hover className="align-middle mb-0">
+                  <thead>
                     <tr>
-                      <th>ID Relacion</th>
-                      <th>ID Multa</th>
                       <th>Carne</th>
                       <th>Estado</th>
                       <th>Creado por</th>
@@ -171,16 +187,14 @@ export function UserFines() {
                   <tbody>
                     {fines.map((fine) => (
                       <tr key={fine.EMU_ESTUDIANTE_MULTA}>
-                        <td className="fw-medium">{fine.EMU_ESTUDIANTE_MULTA}</td>
-                        <td>{fine.MUL_MULTA}</td>
-                        <td>{fine.EST_CARNE}</td>
+                        <td className="fw-semibold">{fine.EST_CARNE}</td>
                         <td>
                           <span className={`badge text-bg-${getFineStatusVariant(fine.EMU_ESTADO_MULTA)}`}>
                             {getFineStatusLabel(fine.EMU_ESTADO_MULTA)}
                           </span>
                         </td>
                         <td>{fine.EMU_CREADO_POR}</td>
-                        <td>{fine.EMU_FECHA_CREACION || 'No disponible'}</td>
+                        <td>{formatFineDate(fine.EMU_FECHA_CREACION)}</td>
                         <td className="text-end">
                           <Button
                             size="sm"

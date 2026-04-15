@@ -1,5 +1,4 @@
-import { useNavigate } from 'react-router';
-import { useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router';
 import { Row, Col, Card, Button, Container } from 'react-bootstrap';
 import { Car, AlertTriangle, FileText, LogOut } from 'lucide-react';
 import { AppHeader } from '../components/AppHeader';
@@ -11,13 +10,9 @@ export function LandingPage() {
   const navigate = useNavigate();
   const { currentRegistration, logout } = useRegistration();
 
-  useEffect(() => {
-    if (!currentRegistration || !currentRegistration.carnet) {
-      navigate('/parking/login');
-    }
-  }, [currentRegistration, navigate]);
-
-  if (!currentRegistration || !currentRegistration.carnet) return null;
+  if (!currentRegistration || !currentRegistration.carnet) {
+    return <Navigate to="/parking/login" replace />;
+  }
 
   const handleLogout = () => {
     logout();
@@ -63,12 +58,12 @@ export function LandingPage() {
                   <div className="d-flex align-items-center justify-content-center mx-auto mb-4">
                     <AlertTriangle size={40} color="#C7352E" />
                   </div>
-                  <Card.Title className="h5 mb-2">Consultas y Pago Multas</Card.Title>
+                  <Card.Title className="h5 mb-2">Multas</Card.Title>
                   <Card.Subtitle className="mb-4 text-muted small">
-                    Consulta tus multas activas y registra su pago desde el portal
+                    Accede al modulo y elige entre consultar, pagar o revisar submodulos disponibles
                   </Card.Subtitle>
                   <Button variant="danger" className="w-100">
-                    Consultar y Pagar
+                    Abrir modulo
                   </Button>
                 </Card.Body>
               </Card>

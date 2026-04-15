@@ -4,6 +4,7 @@ import { Container, Card, Form, Button, Alert } from 'react-bootstrap';
 import { GraduationCap, ArrowLeft, Shield } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { AppFooter } from '../../components/AppFooter';
+import { setAdminSession } from '../../utils/adminSession';
 
 export function AdminLogin() {
   const navigate = useNavigate();
@@ -15,10 +16,22 @@ export function AdminLogin() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Demo credentials
     if (formData.username === 'admin' && formData.password === 'admin123') {
+      setAdminSession({
+        username: formData.username,
+        displayName: 'Admin Usuario',
+        role: 'Administrador',
+      });
       toast.success('Bienvenido, Administrador');
-      navigate('/parking/admin/dashboard');
+      navigate('/parking/admin/dashboard/multas');
+    } else if (formData.username === 'policia' && formData.password === 'policia123') {
+      setAdminSession({
+        username: formData.username,
+        displayName: 'Oficial de Policia',
+        role: 'Policia',
+      });
+      toast.success('Bienvenido, Policia');
+      navigate('/parking/admin/dashboard/multas');
     } else {
       toast.error('Credenciales incorrectas');
     }

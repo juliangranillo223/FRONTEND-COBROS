@@ -117,7 +117,7 @@ export function UserFines() {
                 Revise sus multas y abra el formulario de pago para las que sigan activas
               </Card.Subtitle>
             </div>
-            <Button variant="outline-secondary" onClick={() => navigate('/parking')}>
+            <Button variant="outline-secondary" onClick={() => navigate('/parking/user/multas')}>
               <ArrowLeft size={16} className="me-2" />
               Volver
             </Button>
@@ -167,12 +167,6 @@ export function UserFines() {
             </div>
           ) : (
             <>
-              <Alert variant="info">
-                Esta vista le permite consultar el estado de sus multas. Desde aqui puede abrir la segunda vista del
-                modulo, que es el formulario para pagar una multa activa. El backend actual expone la relacion
-                estudiante-multa, por eso el pago se apoya en esa informacion y el monto se completa en el formulario.
-              </Alert>
-
               <div className="table-responsive parking-fines-table">
                 <Table hover className="align-middle mb-0">
                   <thead>

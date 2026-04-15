@@ -192,7 +192,7 @@ export function UserFinePayment() {
         <PaymentReceiptCard
           data={receiptData}
           onExportPdf={() => exportReceiptToPdf(receiptData)}
-          onContinue={() => navigate('/parking/user/multas')}
+          onContinue={() => navigate('/parking/user/multas/consultar')}
           continueLabel="Volver a Multas"
         />
       </div>
@@ -208,7 +208,7 @@ export function UserFinePayment() {
               <Card.Title className="mb-1 h4">Pago de Multa</Card.Title>
               <Card.Subtitle className="text-muted">Complete el formulario para registrar el pago de la multa seleccionada</Card.Subtitle>
             </div>
-            <Button variant="outline-secondary" onClick={() => navigate('/parking/user/multas')}>
+            <Button variant="outline-secondary" onClick={() => navigate('/parking/user/multas/consultar')}>
               <ArrowLeft size={16} className="me-2" />
               Volver
             </Button>
@@ -229,7 +229,7 @@ export function UserFinePayment() {
               <Alert variant="warning" className="mb-4">
                 Esta multa ya no esta activa para pago. Su estado actual es <strong>{fineRelation.EMU_ESTADO_MULTA}</strong>.
               </Alert>
-              <Button variant="outline-secondary" onClick={() => navigate('/parking/user/multas')}>
+              <Button variant="outline-secondary" onClick={() => navigate('/parking/user/multas/consultar')}>
                 <ArrowLeft size={16} className="me-2" />
                 Volver a Consulta de Multas
               </Button>
@@ -385,7 +385,7 @@ export function UserFinePayment() {
                     variant="outline-secondary"
                     size="lg"
                     className="w-100 d-flex align-items-center justify-content-center"
-                    onClick={() => navigate('/parking/user/multas')}
+                    onClick={() => navigate('/parking/user/multas/consultar')}
                   >
                     <ArrowLeft size={16} className="me-2" />
                     Atras

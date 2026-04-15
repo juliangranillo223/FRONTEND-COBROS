@@ -71,6 +71,16 @@ export interface BackendMulta {
   MUL_fecha_modificacion?: string;
 }
 
+export interface BackendCreateMultaPayload {
+  MUL_monto_total: number;
+  MUL_monto_base: number;
+  MUL_impuesto: number;
+  MUL_descripcion: string;
+  MUL_fecha: string;
+  MUL_fecha_vencimiento: string;
+  MUL_creado_por: string;
+}
+
 export interface BackendEstudianteMulta {
   EMU_ESTUDIANTE_MULTA: number;
   MUL_MULTA: number;
@@ -80,4 +90,11 @@ export interface BackendEstudianteMulta {
   EMU_FECHA_CREACION?: string;
   EMU_MODIFICADO_POR?: string;
   EMU_FECHA_MODIFICACION?: string;
+}
+
+export interface BackendCreateEstudianteMultaPayload {
+  MUL_MULTA: number;
+  EST_CARNE: string;
+  EMU_ESTADO_MULTA?: string;
+  EMU_CREADO_POR: string;
 }

@@ -13,11 +13,13 @@ import { LoginUser } from "./pages/user/LoginUser";
 import { UserProfile } from "./pages/user/UserProfile";
 import { UserFines } from "./pages/user/UserFines";
 import { UserFinePayment } from "./pages/user/UserFinePayment";
+import { FinesModule } from "./pages/FinesModule";
 
 // Admin Pages
 import { AdminLogin } from "./pages/admin/AdminLogin";
 import { AdminDashboard } from "./pages/admin/AdminDashboard";
 import { RegistrationDetail } from "./pages/admin/RegistrationDetail";
+import { AssignFines } from "./pages/admin/AssignFines";
 
 export const parkingRoutes = [
   {
@@ -33,7 +35,9 @@ export const parkingRoutes = [
     Component: UserLayout,
     children: [
       { path: "perfil", Component: UserProfile },
-      { path: "multas", Component: UserFines },
+      { path: "multas", Component: FinesModule },
+      { path: "multas/consultar", Component: UserFines },
+      { path: "multas/asignar", Component: AssignFines },
       { path: "multas/pagar/:relationId", Component: UserFinePayment },
       { index: true, Component: UserStart },
       { path: "datos-personales", Component: PersonalData },
@@ -52,6 +56,8 @@ export const parkingRoutes = [
         Component: AdminLayout,
         children: [
           { index: true, Component: AdminDashboard },
+          { path: "multas", Component: FinesModule },
+          { path: "multas/asignar", Component: AssignFines },
           { path: "registro/:id", Component: RegistrationDetail },
         ],
       },

@@ -1,5 +1,10 @@
 import { apiRequest } from "../api";
-import type { BackendEstudianteMulta, BackendMulta } from "../models/backend";
+import type {
+  BackendCreateEstudianteMultaPayload,
+  BackendCreateMultaPayload,
+  BackendEstudianteMulta,
+  BackendMulta,
+} from "../models/backend";
 
 export const fineService = {
   getAllFines() {
@@ -8,6 +13,13 @@ export const fineService = {
 
   getFineById(id: number) {
     return apiRequest<BackendMulta>(`/api/multa/${id}`);
+  },
+
+  createFine(payload: BackendCreateMultaPayload) {
+    return apiRequest<BackendMulta>("/api/multa", {
+      method: "POST",
+      body: payload,
+    });
   },
 
   getAllStudentFines() {
@@ -20,6 +32,13 @@ export const fineService = {
 
   getStudentFineById(id: number) {
     return apiRequest<BackendEstudianteMulta>(`/api/estudiante_multa/${id}`);
+  },
+
+  createStudentFine(payload: BackendCreateEstudianteMultaPayload) {
+    return apiRequest<BackendEstudianteMulta>("/api/estudiante_multa", {
+      method: "POST",
+      body: payload,
+    });
   },
 
   updateStudentFineStatus(id: number, payload: { EMU_ESTADO_MULTA: string; EMU_MODIFICADO_POR: string }) {
